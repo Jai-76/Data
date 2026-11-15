@@ -10,7 +10,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "workforce.csv"
-IMAGE_DIR = ROOT / "img"
+IMAGE_DIR = ROOT / "outputs"
 IMAGE_DIR.mkdir(exist_ok=True)
 df = pd.read_csv(DATA_PATH)
 
@@ -87,7 +87,7 @@ axes[2].set(title="Aggregate wellbeing risk", ylabel="Employees")
 axes[2].tick_params(axis="x", rotation=28, labelsize=8)
 fig.suptitle("Figure 1 — Global workforce profile", x=0.02, ha="left", fontweight="bold")
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "f1_workforce_profile.png")
+fig.savefig(IMAGE_DIR / "01_workforce_profile.png")
 plt.close(fig)
 
 cols = [
@@ -107,7 +107,7 @@ for i in range(len(labels)):
 ax.set_title("Figure 2 — Capability and wellbeing associations", loc="left")
 fig.colorbar(im, ax=ax, fraction=0.04, pad=0.03, label="Correlation (association only)")
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "f2_correlation_matrix.png")
+fig.savefig(IMAGE_DIR / "02_correlation_matrix.png")
 plt.close(fig)
 
 fig, ax = plt.subplots(figsize=(9, 5.4))
@@ -136,7 +136,7 @@ for x, y, label in positions:
 ax.set_title("Figure 3 — Performance/readiness segments", loc="left")
 fig.colorbar(scatter, ax=ax, label="Wellbeing risk score (aggregate use only)")
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "f3_performance_readiness_segments.png")
+fig.savefig(IMAGE_DIR / "03_performance_readiness_segments.png")
 plt.close(fig)
 
 band_order = ["Stable", "Watch", "Priority", "Critical aggregate signal"]
@@ -158,7 +158,7 @@ axes[1].set(title="Internal mobility by risk band", ylabel="Mobility rate (%)")
 axes[1].tick_params(axis="x", rotation=28, labelsize=8)
 fig.suptitle("Figure 4 — Wellbeing bands and workforce outcomes", x=0.02, ha="left", fontweight="bold")
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "f4_wellbeing_outcomes.png")
+fig.savefig(IMAGE_DIR / "04_wellbeing_outcomes.png")
 plt.close(fig)
 
 df["learning_quartile"] = pd.qcut(
@@ -179,7 +179,7 @@ for x, y in zip(lever.readiness, lever.mobility):
     axes[1].annotate(f"{y:.0f}%", (x, y), xytext=(0, 8), textcoords="offset points", ha="center")
 fig.suptitle("Figure 5 — Development levers", x=0.02, ha="left", fontweight="bold")
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "f5_development_levers.png")
+fig.savefig(IMAGE_DIR / "05_development_levers.png")
 plt.close(fig)
 
 print(f"\nSaved five graph images to {IMAGE_DIR}")
